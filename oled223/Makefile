@@ -26,7 +26,7 @@ MSG = -g -O0 -Wall
 CFLAGS += $(MSG) $(DEBUG)
 
 ${TARGET}:${OBJ_O}
-	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB)
+	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lgpiod
 
 ${DIR_BIN}/%.o:$(DIR_Examples)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ -I $(DIR_Config) -I $(DIR_OLED)

@@ -40,7 +40,10 @@
 #include <math.h>
 
 #include <string.h>
-
+#include "speed.h"
+#include <gpiod.h>
+#include <stdio.h>
+#include <unistd.h>
 
 
 #endif
