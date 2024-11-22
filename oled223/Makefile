@@ -6,7 +6,7 @@ DIR_BIN      = ./build
 OBJ_C = $(wildcard ${DIR_OLED}/*.c ${DIR_Config}/*.c ${DIR_GUI}/*.c ${DIR_Examples}/*.c ${DIR_FONTS}/*.c)
 OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
 
-TARGET = ../../../oled/oled2
+TARGET = ../../../oled/oled
 
 # USELIB = USE_BCM2835_LIB
 # USELIB = USE_WIRINGPI_LIB

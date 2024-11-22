@@ -12,7 +12,7 @@
 #define GPIO_LINE 17              // GPIO line (pin number)
 #define PERIOD 3                  // Period to update counts in seconds
 #define PPR 4
-#define PERIMETER 200
+#define PERIMETER 215
 
 // Global variables
 volatile int gpulses = 0;              // Total pulse count
@@ -108,15 +108,15 @@ void SD1305_speedmeter(int ppp)
     char value[10]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     int line = 0; 
 
-    float kmph  = ((float)ppp) * PERIMETER;
+    float kmph  = ((float)ppp / PPR ) * PERIMETER;
     printf("ppp : %d\n", ppp);
     printf("km/h : %f\n", kmph);
     int hundreds = ((int)kmph / 100) % 10; // Extract hundreds place
     int tens = ((int)kmph / 10) % 10;      // Extract tens place
     int units = (int)kmph % 10;  
-    SSD1305_char1616(0, line, value[hundreds]);
-    SSD1305_char1616(16, line, value[tens]);
-    SSD1305_char1616(32, line, value[units]);
+    SSD1305_char1616(32, line, value[hundreds]);
+    SSD1305_char1616(48, line, value[tens]);
+    SSD1305_char1616(64, line, value[units]);
     SSD1305_display();
 }
 
@@ -226,12 +226,12 @@ int main() {
     int local_pulses = gpulses;
     int speed_update = 0;
     int ppp = 0;
-    SSD1305_icons();
+    //SSD1305_icons();
     while (running) {
 
 //                time(&now);
 
-        SSD1305_strings();
+        //SSD1305_strings();
         SSD1305_clock(CLOCK_LINE);
         speed_update++;
         //printf("spedd update : %d\n", speed_update%10);
