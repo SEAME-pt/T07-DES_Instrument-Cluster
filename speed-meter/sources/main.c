@@ -1,14 +1,11 @@
 #include "test.h"
-#include <time.h>
-
-#define INTERVAL_SEC 10
 
 void  Handler(int signo)
 {
     //System Exit
     printf("\r\nHandler:exit\r\n");
-    DEV_ModuleExit();
     SSD1305_clear();
+    DEV_ModuleExit();
 
     exit(0);
 }
@@ -34,7 +31,7 @@ int main(int argc, char *argv[])
 
    // speed();
     
-    // Obter o chip GPIO (geralmente /dev/gpiochip0 para a maioria dos sistemas)
+        // Obter o chip GPIO (geralmente /dev/gpiochip0 para a maioria dos sistemas)
     struct gpiod_chip *chip = gpiod_chip_open_by_name("gpiochip0");
 
     if (!chip) {
@@ -45,13 +42,6 @@ int main(int argc, char *argv[])
     // Obter o pino GPIO 18 (correspondente ao GPIO 18 no chip)
     struct gpiod_line *line_in = gpiod_chip_get_line(chip, SPEED_SENSOR_PIN);
     struct gpiod_line *line_out = gpiod_chip_get_line(chip, SPEED_STATUS);
-    struct gpiod_line_event event;
-    
-    if (!line_in) {
-        printf("Fail to get pin GPIO %d\n", SPEED_SENSOR_PIN);
-        gpiod_chip_close(chip);
-        return -1;
-    }
 
     if (!line_out) {
         printf("Fail to get pin GPIO %d\n", SPEED_SENSOR_PIN);
@@ -59,9 +49,18 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    // Request line as input with edge detection
-    if (gpiod_line_request_both_edges_events(line_in, "speed_sensor") < 0) {
-        perror("Failed to configure GPIO line for events");
+    // Configurar o pino como entrada com resistor pull-up
+    int ret = gpiod_line_request_input(line_in, "speed_sensor");
+    if (ret < 0) {
+        printf("Fail to config pin as enter: %d\n", ret);
+        gpiod_chip_close(chip);
+        return -1;
+    }
+
+    // Configuração do pull-up (alteração feita aqui)
+    ret = gpiod_line_set_flags(line_in, GPIOD_LINE_REQUEST_FLAG_BIAS_PULL_UP);
+    if (ret < 0) {
+        printf("Erro to config the pull-up: %d\n", ret);
         gpiod_chip_close(chip);
         return -1;
     }
@@ -73,8 +72,6 @@ int main(int argc, char *argv[])
         gpiod_chip_close(chip);
         return -1;
     }
-    time_t start_time = time(NULL); 
-    int impulse_count = 0;
 
     while(1)
     {
@@ -103,34 +100,31 @@ int main(int argc, char *argv[])
 
         SSD1305_display();
 
-        int ret = gpiod_line_event_wait(line_in, NULL);
-        if (ret < 0) {
-            perror("Error waiting for event");
+    //while (1) {
+        // Ler o estado do pino (HIGH ou LOW)
+        int value = gpiod_line_get_value(line_in);
+
+        if (value < 0) {
+            printf("Erro to read pin value\n");
             break;
-        } else if (ret > 0) {
-            // Read the event
-            if (gpiod_line_event_read(line_in, &event) < 0) {
-                perror("Error reading event");
-                break;
-            }
-            // Check for falling edge event
-            if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
-                impulse_count++;
-                printf("Impulse detected! Total count: %d\n", impulse_count);
-            }
         }
 
-        time_t current_time = time(NULL); // Get the current time
-        if (current_time >= start_time + INTERVAL_SEC) {
-            printf("Pressed: %d\n", impulse_count);
-            // Reset the counter
-            impulse_count = 0;
-            start_time = current_time; // Update the start time
-            printf("Counter reset. Current time: %ld\n", current_time);
+	printf("value: %d\n", value);
+        // Verifique se o pino está em LOW (pressionado)
+        if (value == 0) {
+            printf("Pressed\n");
+	    gpiod_line_set_value(line_out, 0); 
+        } else {
+	    gpiod_line_set_value(line_out, 1); 
+            printf("Not Pressed\n");
         }
+
         usleep(100000);  // 100ms
     }
 
     gpiod_chip_close(chip);
+
+    //}
     return 0;
+
 }

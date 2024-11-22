@@ -1,12 +1,12 @@
 DIR_Config   = ./includes/Config
 DIR_OLED     = ./includes/OLED
-DIR_Examples = ./sources
+DIR_Examples = ./examples
 DIR_BIN      = ./build
 
 OBJ_C = $(wildcard ${DIR_OLED}/*.c ${DIR_Config}/*.c ${DIR_GUI}/*.c ${DIR_Examples}/*.c ${DIR_FONTS}/*.c)
 OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
 
-TARGET = ../../../oled/oled2
+TARGET = oled
 
 # USELIB = USE_BCM2835_LIB
 # USELIB = USE_WIRINGPI_LIB
@@ -25,10 +25,8 @@ CC = gcc
 MSG = -g -O0 -Wall
 CFLAGS += $(MSG) $(DEBUG)
 
-all : ${TARGET}
-
 ${TARGET}:${OBJ_O}
-	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lgpiod -lpthread
+	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lgpiod
 
 ${DIR_BIN}/%.o:$(DIR_Examples)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ -I $(DIR_Config) -I $(DIR_OLED)
@@ -40,10 +38,7 @@ ${DIR_BIN}/%.o:$(DIR_Config)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ $(LIB)
 
 clean :
-	rm -rf $(DIR_BIN)/*.*
+	rm $(DIR_BIN)/*.*
 	rm $(TARGET)
 
 re : clean all
-
-run :
-	../../../oled/oled2
