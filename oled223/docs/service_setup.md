@@ -49,14 +49,13 @@ This won't start or stop the service. It will just allow the service to start or
 
   2. start & stop service
 
-'''bash
+```bash
 sudo systemctl start my_executable.service
-'''
+```
 
-'''bash
+```bash
 sudo systemctl stop my_executable.service
-'''
-
+```
 This a run time action. It will launch or stop de service during the current run time.
 
   3. check status
