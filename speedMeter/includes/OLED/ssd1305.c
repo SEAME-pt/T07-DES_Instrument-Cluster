@@ -151,7 +151,7 @@ void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, c
 	unsigned char i, j, y0 = y;
 	char temp;
 	unsigned char charPixel = charAscii - 0x30;
-
+	printf("size: %d\n", size);
 	for(i = 0;i<size;i++)
 	{
 		if(size == 12)
