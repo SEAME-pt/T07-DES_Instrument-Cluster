@@ -1,21 +1,21 @@
-#pragma once
+#ifndef SPEEDMETER_H
+#define SPEEDMETER_H
 
-#include "display.h"
-#include "display_ssd1305.h"
-#include "DEV_Config.h"
-#include "Debug.h"
-#include "ssd1305.h"
+# include "display.h"
+# include "display_ssd1305.h"
+# include "DEV_Config.h"
+# include "Debug.h"
+# include "ssd1305.h"
 
-#include <gpiod.h>
-#include <stdio.h>
-#include <stdlib.h> // malloc() free()
-#include <pthread.h>
-#include <signal.h>     //signal()
-#include <unistd.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
-
+# include <gpiod.h>
+# include <stdio.h>
+# include <stdlib.h> // malloc() free()
+# include <pthread.h>
+# include <signal.h>     //signal()
+# include <unistd.h>
+# include <time.h>
+# include <string.h>
+# include <math.h>
 
 // Global settings
 #define GPIO_CHIP "/dev/gpiochip0"	// GPIO chip device
@@ -52,3 +52,5 @@ void SSD1305_test(void);
 void *pulse_count(void *arg);
 void handle_signal(int signal);
 void display_speed(int ppp);
+
+#endif
