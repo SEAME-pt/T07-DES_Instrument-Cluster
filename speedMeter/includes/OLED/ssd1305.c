@@ -31,6 +31,8 @@
 #include "ssd1305.h"
 
 unsigned char buffer[WIDTH * HEIGHT / 8];
+#define BLACK 0
+#define WHITE 1
 
 void command(uint8_t cmd){
    #if USE_SPI
@@ -54,7 +56,7 @@ void data(uint8_t Data)
 }
 void SSD1305_begin()
 {
-	
+
 	OLED_RST_1;
     DEV_Delay_ms(100);
     OLED_RST_0;
@@ -63,7 +65,7 @@ void SSD1305_begin()
     DEV_Delay_ms(100);
 
     command(0xAE);//--turn off oled panel
-	command(0x04);//--Set Lower Column Start Address for Page Addressing Mode	
+	command(0x04);//--Set Lower Column Start Address for Page Addressing Mode
 	command(0x10);//--Set Higher Column Start Address for Page Addressing Mode
 	command(0x40);//---Set Display Start Line
 	command(0x81);//---Set Contrast Control for BANK0
@@ -95,7 +97,7 @@ void SSD1305_clear()
 		buffer[i] = 0;
 	}
 }
-void SSD1305_pixel(int x,int y,char color)
+void SSD1305_pixel(int x, int y, char color)
 {
     if(x > WIDTH || y > HEIGHT)return ;
     if(color)
@@ -103,17 +105,17 @@ void SSD1305_pixel(int x,int y,char color)
     else
         buffer[x+(y/8)*WIDTH] &= ~(1<<(y%8));
 }
-void SSD1305_char1616(unsigned char x,unsigned char y,unsigned char chChar)
+void SSD1305_char1616(unsigned char x,unsigned char y,unsigned char charAscii)
 {
 	unsigned char i, j;
-	unsigned char chTemp = 0, y0 = y, chMode = 0;
+	unsigned char charPixel = 0, y0 = y, pixelColor = BLACK;
 
 	for (i = 0; i < 32; i ++) {
-		chTemp = Font1612[chChar - 0x30][i];
+		charPixel = Font1612[charAscii - 0x30][i];
 		for (j = 0; j < 8; j ++) {
-			chMode = chTemp & 0x80? 1 : 0; 
-			SSD1305_pixel(x, y, chMode);
-			chTemp <<= 1;
+			pixelColor = charPixel & 0x80? WHITE : BLACK;
+			SSD1305_pixel(x, y, pixelColor);
+			charPixel <<= 1;
 			y ++;
 			if ((y - y0) == 16) {
 				y = y0;
@@ -124,15 +126,15 @@ void SSD1305_char1616(unsigned char x,unsigned char y,unsigned char chChar)
 	}
 }
 
-void SSD1305_char3216(unsigned char x,unsigned char y,unsigned char chChar)
+void SSD1305_char3216(unsigned char x,unsigned char y,unsigned char charAscii)
 {
 	unsigned char i, j;
 	unsigned char chTemp = 0, y0 = y, chMode = 0;
 
 	for (i = 0; i < 64; i ++) {
-		chTemp = Font3216[chChar - 0x30][i];
+		chTemp = Font3216[charAscii - 0x30][i];
 		for (j = 0; j < 8; j ++) {
-			chMode = chTemp & 0x80? 1 : 0; 
+			chMode = chTemp & 0x80? 1 : 0;
 			SSD1305_pixel(x, y, chMode);
 			chTemp <<= 1;
 			y ++;
@@ -156,8 +158,8 @@ void SSD1305_char(unsigned char x,unsigned char y,char acsii,char size,char mode
 			if(mode)temp=Font1206[ch][i];
 			else temp = ~Font1206[ch][i];
 		}
-		else 
-		{			
+		else
+		{
 			if(mode)temp=Font1608[ch][i];
 			else temp = ~Font1608[ch][i];
 		}
@@ -179,7 +181,7 @@ void SSD1305_char(unsigned char x,unsigned char y,char acsii,char size,char mode
 void SSD1305_string(unsigned char x,unsigned char y, const char *pString,
 					unsigned char Size,unsigned char Mode)
 {
-    while (*pString != '\0') {       
+    while (*pString != '\0') {
         if (x > (WIDTH - Size / 2)) {
 			x = 0;
 			y += Size;
@@ -187,7 +189,7 @@ void SSD1305_string(unsigned char x,unsigned char y, const char *pString,
 				y = x = 0;
 			}
 		}
-		
+
         SSD1305_char(x, y, *pString, Size, Mode);
         x += Size / 2;
         pString ++;
@@ -204,19 +206,19 @@ void SSD1305_bitmap(unsigned char x,unsigned char y,const unsigned char *pBmp,
 				SSD1305_pixel(x + i, y + j, 1);
 			}
 		}
-	}		
+	}
 }
 
 void SSD1305_display()
 {
     UWORD page, column;
-    for (page = 0; page < (HEIGHT / 8); page++) {  
+    for (page = 0; page < (HEIGHT / 8); page++) {
         /* set page address */
         command(0xB0 + page);
         /* set low column address */
-        command(0x04); 
+        command(0x04);
         /* set high column address */
-        command(0x10); 
+        command(0x10);
         /* write data */
 		for(column=0; column< WIDTH; column++) {
             data(buffer[page * WIDTH + column]);

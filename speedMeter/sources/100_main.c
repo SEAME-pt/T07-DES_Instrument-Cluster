@@ -13,6 +13,13 @@ volatile int gpulses_per_period = 0;// Pulse count for the last period
 pthread_mutex_t mutex;				// Mutex for synchronization
 int running = 1;
 
+
+void display_text(const char *text)
+{
+	SSD1305_string(0, 0, text, 16, 1);
+	SSD1305_display();
+}
+
 int main() {
 	pthread_t pulse_thread;
 
@@ -22,6 +29,13 @@ int main() {
 	if (SSD1305_init() < 0) exit (-1);
 		SSD1305_test();
 
+	// Initialize global variables
+	gpulses = 0;
+	gpulses_per_period = 0;
+	running = 1;
+
+	display_text("Speed Meter");
+	pause(2);
 
 	// Initialize mutex
 	if (pthread_mutex_init(&mutex, NULL) != 0) {
