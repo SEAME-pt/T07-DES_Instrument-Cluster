@@ -16,7 +16,7 @@ int running = 1;
 
 void display_text(const char *text)
 {
-	SSD1305_string(0, 0, text, 16, 1);
+	SSD1305_string(76, 8, text, 8, 1);
 	SSD1305_display();
 }
 
@@ -34,7 +34,7 @@ int main() {
 	gpulses_per_period = 0;
 	running = 1;
 
-	display_text("Speed Meter");
+	display_text("km/h");
 	sleep(2);
 
 	// Initialize mutex
