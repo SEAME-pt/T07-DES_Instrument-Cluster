@@ -13,14 +13,15 @@ void display_speed(int ppp)
 	int tens = ((int)kmph / 10) % 10;		// Extract tens place
 	int units = (int)kmph % 10;
 
-	printf("ppp : %d\n", ppp);
-	printf("km/h : %f\n", kmph);
-	printf("tens_of_thousands : %d\n", tens_of_thousands);
-	printf("thousands : %d\n", thownsand);
-	printf("hundreds : %d\n", hundreds);
-	printf("tens : %d\n", tens);
-	printf("units : %d\n", units);
-
+	if (ppp) {
+		printf("ppp : %d\n", ppp);
+		printf("km/h : %f\n", kmph);
+		printf("tens_of_thousands : %d\n", tens_of_thousands);
+		printf("thousands : %d\n", thownsand);
+		printf("hundreds : %d\n", hundreds);
+		printf("tens : %d\n", tens);
+		printf("units : %d\n", units);
+	}
 	SSD1305_char1616(40, display_line, value[hundreds]);
 	SSD1305_char1616(56, display_line, value[tens]);
 	SSD1305_char1616(72, display_line, value[units]);

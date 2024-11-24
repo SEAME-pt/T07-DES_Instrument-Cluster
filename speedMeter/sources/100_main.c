@@ -1,8 +1,6 @@
 // File: gpio_pulse_counter_threaded.c
 #include "../includes/speedMeter.h"
 
-
-
 // GPIO chip and line
 struct gpiod_chip *chip = NULL;
 struct gpiod_line *line = NULL;
@@ -34,7 +32,8 @@ int main() {
 	gpulses_per_period = 0;
 	running = 1;
 
-	char text[26] = "abcdefghijklmnopqrstuvwxyz";
+	// char text[26] = "abcdefghijklmnopqrstuvwxyz";
+	char text[26] = "a";
 	display_text(text);
 	sleep(2);
 
