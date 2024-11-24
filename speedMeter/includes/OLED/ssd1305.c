@@ -146,22 +146,22 @@ void SSD1305_char3216(unsigned char x,unsigned char y,unsigned char charAscii)
 		}
 	}
 }
-void SSD1305_char(unsigned char x,unsigned char y,char acsii,char size,char mode)
+void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, char mode)
 {
-	unsigned char i,j,y0=y;
+	unsigned char i, j, y0 = y;
 	char temp;
-	unsigned char ch = acsii - ' ';
+	unsigned char charPixel = charAscii - 0x30;;
 	for(i = 0;i<size;i++)
 	{
 		if(size == 12)
 		{
-			if(mode)temp=Font1206[ch][i];
-			else temp = ~Font1206[ch][i];
+			if(mode)temp=Font1206[charPixel][i];
+			else temp = ~Font1206[charPixel][i];
 		}
 		else
 		{
-			if(mode)temp=Font1608[ch][i];
-			else temp = ~Font1608[ch][i];
+			if(mode)temp=Font1608[charPixel][i];
+			else temp = ~Font1608[charPixel][i];
 		}
 		for(j =0;j<8;j++)
 		{
