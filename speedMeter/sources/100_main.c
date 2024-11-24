@@ -2,6 +2,17 @@
 #include "../includes/speedMeter.h"
 
 
+
+// GPIO chip and line
+struct gpiod_chip *chip = NULL;
+struct gpiod_line *line = NULL;
+
+// Global variables
+volatile int gpulses = 0;			// Total pulse count
+volatile int gpulses_per_period = 0;// Pulse count for the last period
+pthread_mutex_t mutex;				// Mutex for synchronization
+int running = 1;
+
 int main() {
 	pthread_t pulse_thread;
 
