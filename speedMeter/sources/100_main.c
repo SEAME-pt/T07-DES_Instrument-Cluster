@@ -35,7 +35,7 @@ int main() {
 	running = 1;
 
 	display_text("Speed Meter");
-	pause(2);
+	sleep(2);
 
 	// Initialize mutex
 	if (pthread_mutex_init(&mutex, NULL) != 0) {
