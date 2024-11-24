@@ -6,7 +6,7 @@ void display_speed(int ppp)
 	char value[10]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 	int display_line = 0;
 
-	float kmph  = ((float)ppp * PERIMETER) / (PPR * PERIOD) * 3.6;
+	float kmph  = ((float)ppp * PERIMETER) / (PPR);// * PERIOD) * 3.6;
 	int tens_of_thousands = ((int)kmph / 10000) % 10;	// Extract tens of thousands place
 	int thownsand = ((int)kmph / 1000) % 10;	// Extract thousands place
 	int hundreds = ((int)kmph / 100) % 10;	// Extract hundreds place
