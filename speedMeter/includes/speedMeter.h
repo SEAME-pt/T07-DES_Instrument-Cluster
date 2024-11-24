@@ -1,4 +1,5 @@
 //#include "test.h"
+#include "display.h"
 #include "display_ssd1305.h"
 #include "DEV_Config.h"
 #include "Debug.h"
