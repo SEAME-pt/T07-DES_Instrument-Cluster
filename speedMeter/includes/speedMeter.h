@@ -1,4 +1,4 @@
-//#include "test.h"
+#pragma once
 #include "display.h"
 #include "display_ssd1305.h"
 #include "DEV_Config.h"
