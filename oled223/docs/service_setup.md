@@ -1,6 +1,6 @@
 # How to...
 
-In order for an application to run everytime the linux computer based is restart, a service must me setted for taht purpose.
+In order for an application to run everytime the linux computer based is restart, a service must me setted for that purpose.
 
 ## Setup a service to start at boot
 
