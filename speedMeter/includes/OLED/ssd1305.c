@@ -150,7 +150,8 @@ void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, c
 {
 	unsigned char i, j, y0 = y;
 	char temp;
-	unsigned char charPixel = charAscii - 0x30;;
+	unsigned char charPixel = charAscii - 0x30;
+
 	for(i = 0;i<size;i++)
 	{
 		if(size == 12)
@@ -163,8 +164,9 @@ void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, c
 			if(mode)temp=Font1608[charPixel][i];
 			else temp = ~Font1608[charPixel][i];
 		}
-		printf("charPixel : %x\n", charPixel);
-		printf("temp : %x\n", temp);
+		printf("charAscii (x): %x\n", charAscii);
+		printf("charPixel (x): %x\n", charPixel);
+		printf("temp      (x): %x\n", temp);
 
 		for(j =0;j<8;j++)
 		{
