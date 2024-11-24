@@ -6,14 +6,14 @@ In order for an application to run everytime the linux computer based is restart
 
 1. Create a file "my_executable.service":
 
-'''
+```
 bash
 sudo vim /etc/systemd/system/my_executable.service
-'''
+```
 
 2. Fill it with the requested info:
 
-'''bask
+```bask
 [unit]
 Description=whatever_you_want_to_tell_about_your_service
 After=network.target
@@ -26,9 +26,9 @@ WorkingDirectory=/home/your_login/your_service_folder
 
 [Install]
 WantedBy=multi-user.target
-''''
+```
 
-This the '''bash my_executable.service ''' file
+Thisis  the ```bash my_executable.service ``` file
 
 3. Setup service
 
@@ -36,13 +36,13 @@ Now that the service file e ready, a service must be setup
 
   1. enale & disable service
 
-'''bash
+```bash
 sudo systemctl enable my_executable.service
-'''
+```
 
-'''bash
+```bash
 sudo systemctl disable my_executable.service
-'''
+```
 
 This won't start or stop the service. It will just allow the service to start or not at boot.
 
@@ -62,13 +62,13 @@ This a run time action. It will launch or stop de service during the current run
 
   3. check status
 
-'''bash
+```bash
 sudo systemctl status my_executable.service
-'''
+```
 
 If the service is started the status would look like this:
 
-'''bash
+```bash
 ● my_executable.service - OLED223
      Loaded: loaded (/etc/systemd/system/my_executable.service; enabled; preset: enabled)
      Active: active (running) since Sat 2024-11-23 18:01:30 WET; 1h 37min ago
@@ -77,7 +77,7 @@ If the service is started the status would look like this:
         CPU: 1min 53.436s
      CGroup: /system.slice/my_executable.service
              └─507 /home/team07/oled/oled
-'''
+```
 
 
 
