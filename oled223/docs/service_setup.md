@@ -27,7 +27,7 @@ WorkingDirectory=/home/your_login/your_service_folder
 WantedBy=multi-user.target
 ```
 
-Thisis  the ```bash my_executable.service ``` file
+This is  the ```bash my_executable.service ``` file
 
 3. Setup service
 
