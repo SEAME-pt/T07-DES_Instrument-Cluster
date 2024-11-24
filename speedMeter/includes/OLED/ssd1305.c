@@ -189,7 +189,7 @@ void SSD1305_string(unsigned char x,unsigned char y, const char *pString,
 				y = x = 0;
 			}
 		}
-
+	printf(__func__,": ", pString, "\n");
         SSD1305_char(x, y, *pString, Size, Mode);
         x += Size / 2;
         pString ++;
