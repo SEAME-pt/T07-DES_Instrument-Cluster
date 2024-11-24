@@ -1,4 +1,5 @@
 #pragma once
+
 #include "display.h"
 #include "display_ssd1305.h"
 #include "DEV_Config.h"
@@ -50,3 +51,4 @@ void SSD1305_test(void);
 
 void *pulse_count(void *arg);
 void handle_signal(int signal);
+void display_speed(int ppp);
