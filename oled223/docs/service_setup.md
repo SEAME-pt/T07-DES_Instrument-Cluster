@@ -6,8 +6,7 @@ In order for an application to run everytime the linux computer based is restart
 
 1. Create a file "my_executable.service":
 
-```
-bash
+```bash
 sudo vim /etc/systemd/system/my_executable.service
 ```
 
