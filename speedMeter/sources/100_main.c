@@ -81,7 +81,7 @@ int main() {
 	printf("Monitoring pulses on GPIO %d. Press Ctrl+C to stop.\n", GPIO_LINE);
 
 	// Main loop to print counts
-	int local_pulses = gpulses;
+	int previous_pulses = gpulses;
 	int speed_update = 0;
 	int ppp = 0;
 	//SSD1305_icons();
@@ -95,11 +95,11 @@ int main() {
 		//printf("spedd update : %d\n", speed_update%10);
 		if (!(speed_update%10))
 		{
-			printf("Speed update!\n");
+			//printf("Speed update!\n");
 			pthread_mutex_lock(&mutex);
-			ppp = gpulses - local_pulses;
-			printf("Last period count: %d | Total pulses: %d\n", gpulses_per_period, ppp);
-			local_pulses = gpulses;
+			ppp = gpulses - previous_pulses;
+			//printf("Last period count: %d | Total pulses: %d\n", gpulses_per_period, ppp);
+			previous_pulses = gpulses;
 			pthread_mutex_unlock(&mutex);
 			display_speed(ppp);
 			speed_update = 0;
