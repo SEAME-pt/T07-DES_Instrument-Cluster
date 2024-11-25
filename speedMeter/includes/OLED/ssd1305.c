@@ -164,17 +164,17 @@ void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, c
 		}
 		else
 		{
-			printf("size 16\n");
+			printf("size 8\n");
 			if(mode)temp=Font1608[charPixel][i];
 			else temp = ~Font1608[charPixel][i];
 		}
 		printf("temp      (x): %x\n", temp);
 
-		for(j =0;j<8;j++)
+		for(j = 0; j < 8 ; j++)
 		{
 			if(temp & 0x80) SSD1305_pixel(x,y,1);
 			else SSD1305_pixel(x,y,0);
-			temp <<=1;
+			temp <<= 1;
 			y++;
 			if((y-y0)==size)
 			{
