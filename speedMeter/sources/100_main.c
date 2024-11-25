@@ -33,7 +33,7 @@ int main() {
 	running = 1;
 
 	// char text[26] = "abcdefghijklmnopqrstuvwxyz";
-	char text[26] = "a";
+	char text[26] = "km/h";
 	display_text(text);
 	sleep(2);
 
