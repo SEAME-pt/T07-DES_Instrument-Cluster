@@ -14,7 +14,7 @@ int running = 1;
 
 void display_text(const char *text)
 {
-	SSD1305_string(0, 0, text, 8, 0);
+	SSD1305_string(0, 0, text, 12, 0);
 	SSD1305_display();
 }
 
