@@ -20,7 +20,10 @@ void display_text(const char *text)
 
 int main() {
 	pthread_t pulse_thread;
-
+	// Main loop to print counts
+	int previous_pulses = gpulses;
+	int speed_update = 0;
+	int ppp = 0;
 	// Set up signal handling for cleanup
 	signal(SIGINT, handle_signal);
 
@@ -35,7 +38,7 @@ int main() {
 	// char text[26] = "abcdefghijklmnopqrstuvwxyz";
 	char text[26] = "km/h";
 	display_text(text);
-	sleep(2);
+	//sleep(2);
 
 	// Initialize mutex
 	if (pthread_mutex_init(&mutex, NULL) != 0) {
@@ -80,10 +83,7 @@ int main() {
 
 	printf("Monitoring pulses on GPIO %d. Press Ctrl+C to stop.\n", GPIO_LINE);
 
-	// Main loop to print counts
-	int previous_pulses = gpulses;
-	int speed_update = 0;
-	int ppp = 0;
+	display_speed(ppp);
 	//SSD1305_icons();
 	while (running) {
 
