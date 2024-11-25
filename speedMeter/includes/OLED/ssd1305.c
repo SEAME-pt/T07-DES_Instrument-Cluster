@@ -150,22 +150,24 @@ void SSD1305_char(unsigned char x, unsigned char y, char charAscii, char size, c
 {
 	unsigned char i, j, y0 = y;
 	char temp;
-	unsigned char charPixel = charAscii - 0x30;
+	unsigned char charPixel = charAscii - ' ';
 	printf("size: %d\n", size);
+	printf("charAscii (x): %d\n", charAscii);
+	printf("charPixel (x): %d\n", charPixel);
 	for(i = 0;i<size;i++)
 	{
 		if(size == 12)
 		{
+			printf("size 12\n");
 			if(mode)temp=Font1206[charPixel][i];
 			else temp = ~Font1206[charPixel][i];
 		}
 		else
 		{
+			printf("size 16\n");
 			if(mode)temp=Font1608[charPixel][i];
 			else temp = ~Font1608[charPixel][i];
 		}
-		printf("charAscii (x): %x\n", charAscii);
-		printf("charPixel (x): %x\n", charPixel);
 		printf("temp      (x): %x\n", temp);
 
 		for(j =0;j<8;j++)
