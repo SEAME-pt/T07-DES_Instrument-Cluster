@@ -4,6 +4,7 @@
 void handle_signal(int signal)
 {
 	running = 0;
+	
 	if (line) {
 		gpiod_line_release(line);
 	}

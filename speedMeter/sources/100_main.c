@@ -95,26 +95,21 @@ int main() {
 		//printf("spedd update : %d\n", speed_update%10);
 		if (!(speed_update%10))
 		{
-			//printf("Speed update!\n");
 			pthread_mutex_lock(&mutex);
 			ppp = gpulses - previous_pulses;
-			//printf("Last period count: %d | Total pulses: %d\n", gpulses_per_period, ppp);
 			previous_pulses = gpulses;
 			pthread_mutex_unlock(&mutex);
 			display_speed(ppp);
 			speed_update = 0;
 		}
 		usleep(100000);  // 100ms
-
-//		sleep(PERIOD);
 	}
-
 	// Wait for the pulse counting thread to finish
 	pthread_join(pulse_thread, NULL);
 
 	// Cleanup
-	gpiod_line_release(line);
-	gpiod_chip_close(chip);
+	//gpiod_line_release(line);
+	//gpiod_chip_close(chip);
 	pthread_mutex_destroy(&mutex);
 
 	return 0;
