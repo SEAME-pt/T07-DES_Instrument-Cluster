@@ -24,8 +24,8 @@
 #define GPIO_LINE 17				// ENCODER INPUT GPIO line @raspi 4B  (I/O number)
 
 // Speed encoder settings
-#define PPR 40						// Pulses per revolution
-#define PERIMETER 21.5				// Wheel perimeter in meters
+#define PPR 36						// Pulses per revolution
+#define PERIMETER 0.215				// Wheel perimeter in meters
 
 // Speed calculation settings
 #define PERIOD 1					// Period to update counts in seconds

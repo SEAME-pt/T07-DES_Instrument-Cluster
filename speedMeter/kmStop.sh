@@ -1,0 +1,1 @@
+sudo systemctl stop my_executable.service

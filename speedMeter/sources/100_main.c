@@ -93,13 +93,14 @@ int main() {
 		SSD1305_clock(CLOCK_LINE);
 		speed_update++;
 		//printf("spedd update : %d\n", speed_update%10);
-		if (!(speed_update%10))
+		if (!(speed_update%(PERIOD)))
 		{
 			pthread_mutex_lock(&mutex);
 			ppp = gpulses - previous_pulses;
 			previous_pulses = gpulses;
 			pthread_mutex_unlock(&mutex);
 			display_speed(ppp);
+			//printf("Main Pulses = %d \n", previous_pulses);
 			speed_update = 0;
 		}
 		usleep(100000);  // 100ms

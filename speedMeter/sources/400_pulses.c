@@ -25,6 +25,7 @@ void *pulse_count(void *arg)
 		pthread_mutex_lock(&mutex);
 		gpulses_per_period = local_count; // Update pulses for the last period
 		gpulses += local_count;		   // Add to total pulse count
+		//printf("pulses = %d \n", gpulses);
 		pthread_mutex_unlock(&mutex);
 
 		local_count = 0; // Reset local count for the next period
