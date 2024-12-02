@@ -1,0 +1,69 @@
+### **Project Workflow:**
+
+#### **Phase 1: Research**
+1. Understand the architecture of the Raspberry Pi 4B (ARM Cortex-A72, 32-bit or 64-bit).
+2. Study cross-compilation basics and the purpose of toolchains.
+
+#### **Phase 2: Setting Up the Toolchain**
+1. **Install Cross-Compiler on Ubuntu:**
+   - For 32-bit targets:
+     ```bash
+     sudo apt install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+     ```
+   - For 64-bit targets:
+     ```bash
+     sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+     ```
+
+2. **Verify Toolchain Installation:**
+   Check the installed compiler:
+   ```bash
+   arm-linux-gnueabihf-gcc --version
+   ```
+
+#### **Phase 3: Write and Compile a Test Application**
+1. Write a simple "Hello, Raspberry Pi!" application in C++.
+   ```cpp
+   #include <iostream>
+   int main() {
+       std::cout << "Hello, Raspberry Pi!" << std::endl;
+       return 0;
+   }
+   ```
+
+2. Cross-compile the application:
+   ```bash
+   arm-linux-gnueabihf-g++ -o hello_rpi hello_rpi.cpp
+   ```
+
+#### **Phase 4: Deploy and Run on Raspberry Pi**
+1. Transfer the compiled binary to the Raspberry Pi:
+   ```bash
+   scp hello_rpi pi@<raspberry-pi-ip>:/home/pi/
+   ```
+
+2. Run the binary on the Raspberry Pi:
+   ```bash
+   ./hello_rpi
+   ```
+
+#### **Phase 5: Debugging**
+1. Install and configure `gdbserver` on the Raspberry Pi.
+2. Use `gdb` on the Ubuntu host to remotely debug the application running on the Raspberry Pi.
+
+#### **Phase 6: Documentation and Demonstration**
+1. Document the setup process, including toolchain configuration, file transfer, and debugging steps.
+2. Demonstrate the process from writing code on the host to running it on the Raspberry Pi.
+
+---
+
+### **Extensions:**
+1. Automate the build and deployment process using Makefiles or CMake.
+2. Set up a cross-compilation workflow with an integrated development environment (e.g., Visual Studio Code).
+3. Optimize the application for the ARM architecture using compiler flags.
+
+---
+
+Labels :
+- setting up a development environment for embedded systems
+- cross-compilation as critical skill.
