@@ -1,0 +1,6 @@
+[submodule "Controller"]
+	path = Controller
+	url = git@github.com:seame-t07/ControllerClass.git
+[submodule "Sensors"]
+	path = Sensors
+	url = git@github.com:seame-t07/SensorsClasses.git

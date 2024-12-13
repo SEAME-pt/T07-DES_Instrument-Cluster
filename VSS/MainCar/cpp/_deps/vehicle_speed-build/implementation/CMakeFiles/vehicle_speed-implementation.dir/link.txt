@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG -shared -Wl,-soname,libvehicle_speed-implementation.so -o ../../../lib/libvehicle_speed-implementation.so "CMakeFiles/vehicle_speed-implementation.dir/vehiclespeed.cpp.o"  -Wl,-rpath,/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/lib: ../../../lib/libvehicle_speed-core.so 

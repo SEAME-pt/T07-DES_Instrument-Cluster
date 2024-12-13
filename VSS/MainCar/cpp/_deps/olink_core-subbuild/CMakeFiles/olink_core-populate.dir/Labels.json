@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/CMakeFiles/olink_core-populate"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/CMakeFiles/olink_core-populate.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/CMakeFiles/olink_core-populate-complete.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-build.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-configure.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-download.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-install.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-patch.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-test.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/olink_core-subbuild/olink_core-populate-prefix/src/olink_core-populate-stamp/olink_core-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"olink_core-populate"
+		],
+		"name" : "olink_core-populate"
+	}
+}

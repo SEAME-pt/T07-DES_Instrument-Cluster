@@ -1,0 +1,3 @@
+[submodule "CANBus"]
+	path = CANBus
+	url = git@github.com:seame-t07/CANBusClass.git

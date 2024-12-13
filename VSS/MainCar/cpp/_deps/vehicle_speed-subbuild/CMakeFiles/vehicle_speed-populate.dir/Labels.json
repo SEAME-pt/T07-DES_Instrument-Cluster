@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/CMakeFiles/vehicle_speed-populate"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/CMakeFiles/vehicle_speed-populate.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/CMakeFiles/vehicle_speed-populate-complete.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-build.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-configure.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-download.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-install.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-patch.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-test.rule"
+		},
+		{
+			"file" : "/home/hmaciel-/Dev/Seame/MainCar/MainCar/cpp/_deps/vehicle_speed-subbuild/vehicle_speed-populate-prefix/src/vehicle_speed-populate-stamp/vehicle_speed-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"vehicle_speed-populate"
+		],
+		"name" : "vehicle_speed-populate"
+	}
+}

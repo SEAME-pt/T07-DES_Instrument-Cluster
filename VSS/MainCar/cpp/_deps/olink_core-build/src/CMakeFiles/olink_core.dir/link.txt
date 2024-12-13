@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libolink_core.a CMakeFiles/olink_core.dir/olink/core/basenode.cpp.o CMakeFiles/olink_core.dir/olink/core/protocol.cpp.o CMakeFiles/olink_core.dir/olink/core/types.cpp.o CMakeFiles/olink_core.dir/olink/consolelogger.cpp.o CMakeFiles/olink_core.dir/olink/clientnode.cpp.o CMakeFiles/olink_core.dir/olink/clientregistry.cpp.o CMakeFiles/olink_core.dir/olink/remotenode.cpp.o CMakeFiles/olink_core.dir/olink/remoteregistry.cpp.o
+/usr/bin/ranlib ../../../lib/libolink_core.a

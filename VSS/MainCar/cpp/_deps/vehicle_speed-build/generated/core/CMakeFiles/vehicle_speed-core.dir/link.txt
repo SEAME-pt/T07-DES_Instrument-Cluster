@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG -shared -Wl,-soname,libvehicle_speed-core.so -o ../../../../lib/libvehicle_speed-core.so "CMakeFiles/vehicle_speed-core.dir/vehicle_speed.json.adapter.cpp.o" "CMakeFiles/vehicle_speed-core.dir/vehiclespeed.publisher.cpp.o" "CMakeFiles/vehicle_speed-core.dir/vehiclespeed.threadsafedecorator.cpp.o" 
