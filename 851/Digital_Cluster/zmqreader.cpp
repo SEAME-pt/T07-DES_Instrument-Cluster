@@ -1,6 +1,7 @@
 #include "zmqreader.h"
 #include <QDebug>
 #include <cstring>
+#include <iostream>
 
 ZMQReader::ZMQReader(const QString &address, QObject *parent)
     : QThread(parent), m_address(address), m_running(false)
@@ -12,8 +13,6 @@ ZMQReader::ZMQReader(const QString &address, QObject *parent)
 ZMQReader::~ZMQReader()
 {
     stop();
-    // quit();
-    // wait();
 }
 
 void ZMQReader::run()
@@ -39,14 +38,38 @@ void ZMQReader::run()
                 continue;
             }
 
-            // Convertendo a mensagem recebida para int
-            float receivedSpeed;
-            std::memcpy(&receivedSpeed, message.data(), sizeof(receivedSpeed));
-            // qInfo() << "speed: " << receivedSpeed;
+            // QString msg = QString::fromUtf8(static_cast<const char*>(message.data()), message.size());
+            std::string msg(static_cast<const char*>(message.data()), message.size());
+
+            std::cout << "Message: " << msg << std::endl;
+
+            // auto parts = QString::fromStdString(msg).split(" ");
+            QString qMsg = QString::fromStdString(msg);
+            auto parts = qMsg.split(" ");
+
+            if (parts.size() == 2 && parts[0] == "speed") {
+                emit speedReceived(parts[1]);
+            } else if (parts.size() == 2 && parts[0] == "battery") {
+                emit batteryReceived(parts[1]);
+            } else if (parts.size() == 2 && parts[0] == "lightshigh") {
+                emit headLightsReceived(parts[1]);
+            } else if (parts.size() == 2 && parts[0] == "lightsemergency") {
+                emit emergencyLightsReceived(parts[1]);
+            } else if (parts.size() == 2 && parts[0] == "lightsleft") {
+                emit turnLightLeftReceived(parts[1]);
+            } else if (parts.size() == 2 && parts[0] == "lightsright") {
+                emit turnLightRightReceived(parts[1]);
+            }
+
+
+            // Imprime a string na consola
+            //qDebug() << "Mensagem recebida:" << speedString;
+
 
             // Emite o sinal para a UI
-            // emit speedReceived(receivedSpeed);
-            emit speedReceived(static_cast<int>(receivedSpeed));
+            //emit speedReceived(speedString);
+
+
         }
     } catch (const zmq::error_t &e) {
         qWarning() << "Erro no loop de leitura:" << e.what();
@@ -57,19 +80,11 @@ void ZMQReader::stop()
 {
     m_running = false;
 
-    // if (isRunning()) {
-    //     quit();  // Sinaliza o encerramento da thread
-    //     wait();  // Aguarda o término da thread
-    // }
-
     if (m_socket) {
-        // m_socket->disconnect(m_address.toStdString());
         m_socket->close();
-        // m_socket.reset();
     }
     if (m_context) {
         m_context->close();
-        // m_context.reset();
     }
      wait();  // Aguarda a thread terminar
 

@@ -15,13 +15,19 @@ Rectangle {
             Column {
                 spacing: 10
                 anchors.fill: parent
-                anchors.margins: 20
+                anchors.margins: 15
+
+                Rectangle {
+                    height: 20 // Espaçamento específico para este ponto
+                    width: parent.width
+                    color: "transparent"
+                }
 
                 // Album Cover
                 Rectangle {
                     id: albumCover
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width * 0.55
+                    width: parent.width * 0.60
                     height: width
                     // width: 170
                     // height: 170
@@ -63,7 +69,7 @@ Rectangle {
                     id: songTitle
                     text: " The man who sold the world"
                     color: "white"
-                    font.pixelSize: 15
+                    font.pixelSize: 12
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
@@ -108,12 +114,12 @@ Rectangle {
                     Text {
                         text: "1:25"
                         color: "white"
-                        font.pixelSize: 15
+                        font.pixelSize: 12
                     }
 
                     Rectangle {
                         height: 10 // Espaçamento específico para este ponto
-                        width: parent.width * 0.65
+                        width: parent.width * 0.55
                         color: "transparent"
                     }
 
@@ -121,7 +127,7 @@ Rectangle {
                     Text {
                         text: "4:34"
                         color: "white"
-                        font.pixelSize: 15
+                        font.pixelSize: 12
                     }
                 }
 

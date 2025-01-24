@@ -2,7 +2,7 @@ import QtQuick 2.15
 
 Rectangle {
     id: rightColumn
-    width: parent.width * 0.3 - 10// 20% da largura do container retirar os 10 da margin , ver coluna da esquerda
+    width: parent.height * 0.618 - 10// 20% da largura do container retirar os 10 da margin , ver coluna da esquerda
 
     anchors {
         top: parent.top
@@ -30,7 +30,7 @@ Rectangle {
         Loader {
                 id: rightLoader
                 anchors.fill: parent
-                source: ""
+                source: "Navigation_right_Mapview.qml"
 
         }
     }

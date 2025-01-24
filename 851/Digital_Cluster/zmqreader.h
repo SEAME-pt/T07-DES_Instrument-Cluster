@@ -17,7 +17,14 @@ public:
     void stop();
 
 signals:
-    void speedReceived(int speed);
+    void speedReceived(QString speed);
+    void batteryReceived(QString battery);
+    void headLightsReceived(QString headLights);
+    void brakeLightReceived(QString brakeLight);
+    void turnLightLeftReceived(QString turnLightLeft);
+    void turnLightRightReceived(QString turnLightRight);
+    void emergencyLightsReceived(QString emergencyLights);
+    void totalDistanceReceived(QString totalDistance);
 
 protected:
     void run() override;

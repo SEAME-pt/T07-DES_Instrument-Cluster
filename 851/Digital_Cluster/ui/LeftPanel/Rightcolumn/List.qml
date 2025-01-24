@@ -28,14 +28,16 @@ Rectangle {
         width: parent.width
         height: 50
         // height: Math.abs(optionsList.view.currentIndex - index) === 0 ? 80 : 50 // Aumenta o item no centro
-        opacity: Math.abs(optionsList.currentIndex - index) === 0 ? 1 : 0.5 // Ajusta a opacidade do item
+        // opacity: Math.abs(optionsList.currentIndex - index) === 0 ? 1 : 0.5 // Ajusta a opacidade do item
 
         Text {
             anchors.centerIn: parent
             text: model.name
             // color: "white"
             color: index === optionsList.currentIndex ? "#4A90E2" : "white"
-            font.pixelSize: 24
+            opacity: index === optionsList.currentIndex ? 1 : 0.2
+            font.pixelSize: index === optionsList.currentIndex ? 18 : 10
+            // font.pixelSize: 18
         }
 
         MouseArea {

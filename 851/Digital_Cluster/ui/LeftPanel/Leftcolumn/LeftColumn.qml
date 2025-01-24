@@ -3,8 +3,8 @@ import QtQuick 2.15
 Rectangle {
     id: leftColumn
     // width: parent.width * 0.2 - 10// 20% da largura do container retira os 10 do spacing
-    width: isCenterPanelOn ? parent.width : parent.width * 0.2 - 10
-
+    width: isCenterPanelOn ? parent.width : parent.height * 0.618 - 10
+    // height: parent.height
     anchors {
         top: parent.top
         bottom: parent.bottom

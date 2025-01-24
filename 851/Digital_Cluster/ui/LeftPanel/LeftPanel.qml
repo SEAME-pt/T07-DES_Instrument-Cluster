@@ -7,13 +7,12 @@ import "./Centercolumn"
 // Left panel
 Rectangle {
     id: leftPanel
-    width: isCenterPanelOn ? (parent.width * 0.2 - 10) : parent.width // não deve ser necessário
-    // color: "#2F2F2F"
-    color: "#1F1F1F"
+    width: isCenterPanelOn ? (parent.height * 0.618 - 10) : parent.width // não deve ser necessário
+    // color: "#272727"
+    color: "transparent"
     radius: 8
 
     property bool isCenterPanelOn : centerPanel.visible
-    // anchors.fill: parent
 
     anchors {
         bottom: parent.bottom
@@ -28,14 +27,13 @@ Rectangle {
 
     Row {
             id: rowLayout
-            anchors.fill: parent
             spacing: 10 // Espaçamento entre as colunas
+            anchors.fill: parent
 
             // Coluna da esquerda
             LeftColumn {
                 id: leftColumn
                 visible: true
-                // visible: isCenterPanelOn ? false : true
             }
 
 

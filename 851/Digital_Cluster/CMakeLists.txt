@@ -29,24 +29,40 @@ qt_add_qml_module(appDigital_Cluster
         ui/LeftPanel/Leftcolumn/Service.qml
         ui/LeftPanel/Rightcolumn/Media.qml
         ui/LeftPanel/Rightcolumn/List.qml
-        ui/LeftPanel/Centercolumn/Route.qml
-        ui/LeftPanel/Leftcolumn/Signs.qml
+        ui/LeftPanel/Centercolumn/Signs.qml
         ui/LeftPanel/Rightcolumn/Navigation_right.qml
         ui/LeftPanel/Rightcolumn/Navigation_right_Mapview.qml
         ui/CenterPanel/Bottombar.qml
+        ui/LeftPanel/Centercolumn/Left.qml
+        ui/LeftPanel/Centercolumn/Route.qml
+        ui/LeftPanel/Centercolumn/Right.qml
+        ui/LeftPanel/Centercolumn/Signsright.qml
     RESOURCES
         ui/assets/carRender.jpg
         ui/assets/modes.svg
         ui/assets/navigation.svg
         ui/assets/settings.svg
-        ui/assets/trip.svg
         ui/assets/nirvana.jpg
-        ui/assets/car.png
         ui/assets/icon00.png
         ui/assets/icon03.png
         ui/assets/icon13.png
         ui/assets/icon16.png
         ui/assets/red_marker.png
+        ui/assets/battery.png
+        ui/assets/odometer.png
+        ui/assets/trip.png
+        ui/assets/brake.png
+        ui/assets/hold.png
+        ui/assets/light.png
+        ui/assets/lightauto.png
+        ui/assets/minlight.png
+        ui/assets/car.png
+        ui/assets/HeadLights.png
+        ui/assets/Tirepressure.png
+        ui/assets/Tractioncontrol.png
+        ui/assets/Turnsignal.png
+        ui/assets/turn_light_01.png
+        ui/assets/turn_light_02.png
     SOURCES
         System.h
         System.cpp

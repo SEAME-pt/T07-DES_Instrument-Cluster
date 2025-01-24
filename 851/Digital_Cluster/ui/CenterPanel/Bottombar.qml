@@ -35,7 +35,7 @@ Rectangle {
             Text {
                 id: speed
                 // text: "42"
-                text: systemHandler.speedSensor
+                text: systemHandler.speed
                 color: "white"
                 font.pixelSize: 42
                 anchors.horizontalCenter: parent.horizontalCenter

@@ -25,9 +25,9 @@ Window {
         }
 
     Rectangle {
+        id: root
         width: 1280
         height: 400
-        // anchors.fill: parent
         color: "black" // Background color of the cluster
 
         LeftPanel {
