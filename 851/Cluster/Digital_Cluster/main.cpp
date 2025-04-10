@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <zmq.hpp>
+#include <QDebug>
 #include "System.h"
 #include "zmqreader.h"
 
@@ -9,7 +10,10 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    System m_systemHandler;
+    // System m_systemHandler;
+
+    zmq::context_t zmqContext(1); // Contexto ZMQ
+    System m_systemHandler(zmqContext); // Passa o contexto
 
     QQmlApplicationEngine engine;
     QObject::connect(
@@ -22,6 +26,11 @@ int main(int argc, char *argv[])
     // colocar aqui o carregar da classe para depois ao carregar o maincomponent carregar tudo
     QQmlContext *context(engine.rootContext());
     context->setContextProperty("systemHandler", &m_systemHandler);
+
+    // Conectar o sinal lkasChanged para imprimir mudanças -teste
+    // QObject::connect(&m_systemHandler, &System::lkasChanged, [&]() {
+    //     qDebug() << "Main: lkas mudou para:" << m_systemHandler.lkas();
+    // });
 
     // Inicializar o ZMQReader
     ZMQReader zmqReader("tcp://localhost:5555"); // Endereço da socket
@@ -59,6 +68,29 @@ int main(int argc, char *argv[])
         m_systemHandler.setTotalDistance(totalDistance);
     });
 
+    // QObject::connect(&zmqReader, &ZMQReader::lkasReceived, [&](QString lkas) {
+    //     m_systemHandler.setLkas(lkas);
+    // });
+
+    QObject::connect(&zmqReader, &ZMQReader::lkasReceived, [&](QString lkas) {
+        m_systemHandler.setLkasFromZMQ(lkas); // Usa método especial
+    });
+
+    // QObject::connect(&zmqReader, &ZMQReader::autoPilotReceived, [&](QString autoPilot) {
+    //     m_systemHandler.setAutoPilot(autoPilot);
+    // });
+
+    QObject::connect(&zmqReader, &ZMQReader::autoPilotReceived, [&](QString autoPilot) {
+        m_systemHandler.setAutoPilotFromZMQ(autoPilot); // Usa método especial
+    });
+
+    QObject::connect(&zmqReader, &ZMQReader::lineLeftReceived, [&](QString lineLeft) {
+        m_systemHandler.setLineLeft(lineLeft);
+    });
+
+    QObject::connect(&zmqReader, &ZMQReader::lineRightReceived, [&](QString lineRight) {
+        m_systemHandler.setLineRight(lineRight);
+    });
 
     zmqReader.start(); // Inicia a thread - corre o run
 
@@ -72,5 +104,4 @@ int main(int argc, char *argv[])
     //zmqReader.stop();
 
     return app.exec();
-
 }

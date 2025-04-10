@@ -5,12 +5,8 @@ import Qt5Compat.GraphicalEffects
 
 Rectangle {
     id: media
-    // width: parent.width * 0.25
-    width: parent.width - 20 // estou a tirar as margins
-    height: parent.height - 20
     color: "#1E1E1E"
-    // color: "green"
-    radius: 8
+    radius: 10
 
     Column {
         id:infoAlbum
@@ -129,28 +125,48 @@ Rectangle {
                 font.pixelSize: 12
             }
         }
+    }
 
-        // Button {
-        //     text: "Voltar"
-        //     anchors.horizontalCenter: parent.horizontalCenter
-        //     background: Rectangle {
-        //         implicitWidth: 50
-        //         implicitHeight: 20
-        //         color: "#1F1F1F" // Cor de fundo
-        //         radius: 10 // Arredondamento opcional
-        //     }
-        //     contentItem: Text {
-        //         text: "back"
-        //         color: "white"
-        //         font.pixelSize: 12
-        //         horizontalAlignment: Text.AlignHCenter
-        //         verticalAlignment: Text.AlignVCenter
-        //     }
-        //     onClicked: {
-        //         // console.log("Voltando para o menu anterior")
-        //         rightLoader.source = "List.qml"
-        //         // Coloque aqui o código para exibir a página anterior
-        //     }
-        // }
+    // Botão de voltar
+    Rectangle {
+        id: btnBack
+        anchors {
+            bottom: parent.bottom
+        }
+
+        width: parent.width
+        height: 50
+        // color: mouseAreaBack.containsMouse ? "#3A3A3A" : "transparent"
+        color: "transparent"
+        radius: 5
+
+        Row {
+            anchors.centerIn: parent
+            spacing: 10
+
+            Image {
+                source: "../../assets/arrow_back.svg"
+                width: 18
+                height: 18
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            Text {
+                text: "Back"
+                color: "white"
+                font.pixelSize: 18
+                font.weight: Font.Medium
+            }
+        }
+
+        MouseArea {
+            id: mouseAreaBack
+            anchors.fill: parent
+            // hoverEnabled: true
+            onClicked: {
+                console.log("Back clicked");
+                stackviewRightColumn.pop()
+            }
+        }
     }
 }

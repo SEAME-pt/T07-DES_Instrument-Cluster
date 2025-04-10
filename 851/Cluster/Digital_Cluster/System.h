@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <zmq.hpp> // Adicionado para usar ZMQ
 
 class System : public QObject
 {
@@ -16,9 +17,15 @@ class System : public QObject
     Q_PROPERTY(QString turnLightRight READ turnLightRight WRITE setTurnLightRight NOTIFY turnLightRightChanged FINAL)
     Q_PROPERTY(QString emergencyLights READ emergencyLights WRITE setEmergencyLights NOTIFY emergencyLightsChanged FINAL)
     Q_PROPERTY(QString totalDistance READ totalDistance WRITE setTotalDistance NOTIFY totalDistanceChanged FINAL)
+    Q_PROPERTY(QString lkas READ lkas WRITE setLkas NOTIFY lkasChanged FINAL)
+    Q_PROPERTY(QString autoPilot READ autoPilot WRITE setAutoPilot NOTIFY autoPilotChanged FINAL)
+    Q_PROPERTY(QString lineRight READ lineRight WRITE setLineRight NOTIFY lineRightChanged FINAL)
+    Q_PROPERTY(QString lineLeft READ lineLeft WRITE setLineLeft NOTIFY lineLeftChanged FINAL)
+    Q_PROPERTY(QString gamePad READ gamePad WRITE setGamePad NOTIFY gamePadChanged FINAL)
 
 public:
-    explicit System(QObject *parent = nullptr);
+    // explicit System(QObject *parent = nullptr);
+    explicit System(zmq::context_t &context, QObject *parent = nullptr);
 
     QString speed() const;
     void setSpeed(const QString &newSpeed);
@@ -44,6 +51,23 @@ public:
     QString totalDistance() const;
     void setTotalDistance(const QString &newTotalDistance);
 
+    QString lkas() const;
+    void setLkas(const QString &newLkas);
+    void setLkasFromZMQ(const QString &newLkas); // Novo: método para ZMQ
+
+    QString autoPilot() const;
+    void setAutoPilot(const QString &newAutoPilot);
+    void setAutoPilotFromZMQ(const QString &newAutoPilot); // Novo: método para ZMQ
+
+    QString lineRight() const;
+    void setLineRight(const QString &newLineRight);
+
+    QString lineLeft() const;
+    void setLineLeft(const QString &newLineLeft);
+
+    QString gamePad() const;
+    void setGamePad(const QString &newGamePad);
+
 signals:
 
     void speedChanged();
@@ -62,6 +86,16 @@ signals:
 
     void totalDistanceChanged();
 
+    void lkasChanged();
+
+    void autoPilotChanged();
+
+    void lineRightChanged();
+
+    void lineLeftChanged();
+
+    void gamePadChanged();
+
 private:
 
     QString m_speed;
@@ -72,7 +106,17 @@ private:
     QString m_turnLightRight;
     QString m_emergencyLights;
     QString m_totalDistance;
-    
+    QString m_lkas;
+    QString m_autoPilot;
+    QString m_lineRight;
+    QString m_lineLeft;
+    QString m_gamePad;
+
+    bool m_updatingFromZMQ; // Novo: flag para evitar loop
+    zmq::socket_t m_zmqSocket; // Novo: socket para enviar ao ZMQ
+
+    void sendToZMQ(const QString &key, const QString &value); // Novo: função para enviar ao ZMQ
+
 };
 
 #endif // SYSTEM_H

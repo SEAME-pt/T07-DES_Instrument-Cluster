@@ -12,30 +12,12 @@ Rectangle {
     anchors.bottom: parent.bottom
     layer.enabled: true
 
+    property bool showIcons: false
+
         SignsLeftCenterPanel {
             id: signsLeftBottomBar
 
-            //  se o sinal não estiver implementado no systemhandler, mesmo colocando true não aparece ligado no display
-            Component.onCompleted: {
-                        let stateMinLights = systemHandler.minLights === "true" ? true : false; //falta no systemHandler
-                        let stateHeadLights = systemHandler.headLights === "true" ? true : false;
-                        let stateMaxLight = systemHandler.maxLights === "true" ? true : true; //falta no systemHandler
-                        let stateAutolight = systemHandler.autoLights === "true" ? true : false; //falta no systemHandler
-                        let stateHoldLight = systemHandler.holdLight === "true" ? true : false; //falta no systemHandler
-                        let stateBrakeLights = systemHandler.brakeLight === "true" ? true : false;
-                        let stateTractionControlLight = systemHandler.tractionControlLight === "true" ? true : false;
-                        let stateTirePressureLight = systemHandler.tirePressureLight === "true" ? true : false;
-                        toggleLight("minLight", stateMinLights); // Liga ou desliga o ícone - fazer o mesmo para os outros
-                        toggleLight("headLights", stateHeadLights);
-                        toggleLight("maxLight", stateMaxLight);
-                        toggleLight("lightAuto", stateAutolight);
-                        toggleLight("hold", stateHoldLight);
-                        toggleLight("brake", stateBrakeLights);
-                        toggleLight("tractionControl", stateTractionControlLight);
-                        toggleLight("tirePressure", stateTirePressureLight);
-                    }
         }
-
 
         Rectangle {
             id: hoursBottombar
@@ -54,6 +36,54 @@ Rectangle {
                     text: "12:27 pm"
                     font.pixelSize: 20
                     color: "lightgray"
+                }
+
+                Rectangle {
+                    id: btnBack
+
+
+                    width: parent.width
+                    height: 50
+                    // color: mouseAreaBack.containsMouse ? "#3A3A3A" : "transparent"
+                    color: "transparent"
+                    radius: 5
+
+                    Row {
+                        anchors.centerIn: parent
+                        spacing: 10
+
+                        Image {
+                            source: "../assets/stop.svg"
+                            width: 17
+                            height: 17
+                            anchors.verticalCenter: parent.verticalCenter
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            mipmap: true
+                            opacity: 0.5
+                        }
+
+                        Text {
+                            text: "Stop"
+                            color: "white"
+                            font.pixelSize: 17
+                            font.weight: Font.Medium
+                            anchors.verticalCenter: parent.verticalCenter
+                            opacity: 0.5
+                        }
+                    }
+
+                    MouseArea {
+                        id: mouseAreaBack
+                        anchors.fill: parent
+                        // hoverEnabled: true
+                        property bool _stopNav: false
+                        onClicked: {
+                            console.log("Stop clicked");
+                            _stopNav = !_stopNav;
+                            centerPanel.stopNav(_stopNav);
+                        }
+                    }
                 }
             }
         }

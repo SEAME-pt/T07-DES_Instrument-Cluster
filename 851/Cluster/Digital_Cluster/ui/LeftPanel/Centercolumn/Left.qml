@@ -50,13 +50,15 @@ Rectangle {
         Signs {
             id: signs
 
-            Component.onCompleted: {
-                        // Converte a string recebida para um valor booleano
-                        // var state = system.headLights === "true";
-                        // let stateHeadLights = false; //true liga os headLights
-                        let stateHeadLights = systemHandler.headLights === "true" ? true : false;
-                        toggleLight("headLights", stateHeadLights); // Liga ou desliga o ícone
-                    }
+            // atenção só fornece os estados quando corre no inicio, não é dinâmico
+            // Component.onCompleted: {
+            //             // Converte a string recebida para um valor booleano
+            //             // var state = system.headLights === "true";
+            //             // let stateHeadLights = false; //true liga os headLights
+            //             let stateHeadLights = systemHandler.headLights === "true" ? true : false;
+            //             toggleLight("headLights", stateHeadLights); // Liga ou desliga o ícone
+            //         }
+
         }
 
         Rectangle {

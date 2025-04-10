@@ -26,6 +26,10 @@ signals:
     void turnLightRightReceived(QString turnLightRight);
     void emergencyLightsReceived(QString emergencyLights);
     void totalDistanceReceived(QString totalDistance);
+    void lkasReceived(QString lkas);
+    void autoPilotReceived(QString autoPilot);
+    void lineLeftReceived(QString lineLeft);
+    void lineRightReceived(QString lineRight);
 
 protected:
     void run() override;

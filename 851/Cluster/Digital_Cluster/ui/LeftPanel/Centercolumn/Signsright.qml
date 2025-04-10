@@ -8,18 +8,19 @@ Column {
     signal gearSelected(string gearSelected)
 
     // Sinal para receber as luzes
-    signal toggleLight(string lightName, bool state)
+    // signal toggleLight(string lightName, bool state)
 
     property string gear: "P"
     property bool showIcons: false // Indica se os ícones devem estar "ligados"
 
-    property bool holdOn: false
-    property bool brakeOn: false
-    property bool tractionControlOn: false
-    property bool tirePressureOn: false
+    property bool holdOn: systemHandler.holdLight === "true"                      // falta no systemHandler
+    property bool brakeOn: systemHandler.brakeLight === "true"
+    property bool tractionControlOn: systemHandler.tractionControlOn === "true"   // falta no systemHandler
+    property bool tirePressureOn: systemHandler.tirePressureLight === "true"      // falta no systemHandler
+    property bool autoPilot: systemHandler.autoPilot === "true"                   // falta no systemHandler
 
     Repeater {
-        model: ["hold", "brake", "tractionControl", "tirePressure"]
+        model: ["hold", "brake", "tractionControl", "tirePressure", "autopilot_1"]
 
         delegate: Rectangle {
             width: 40
@@ -33,10 +34,11 @@ Column {
                 fillMode: Image.PreserveAspectFit
                 smooth: true // Para renderização de alta qualidade
                 // opacity: showIcons ? 1 : 0.2
-                opacity: showIcons ? 1 : (modelData === "hold" ? (holdOn ? 1 : 0.2) :
-                                          modelData === "brake" ? (brakeOn ? 1 : 0.2) :
-                                          modelData === "tractionControl" ? (tractionControlOn ? 1 : 0.2) :
-                                          modelData === "tirePressure" ? (tirePressureOn ? 1 : 0.2) : 0.2)
+                opacity: showIcons ? 1 : (modelData === "hold" ? (signsRight.holdOn ? 1 : 0.2) :
+                                        modelData === "brake" ? (signsRight.brakeOn ? 1 : 0.2) :
+                                        modelData === "tractionControl" ? (signsRight.tractionControlOn ? 1 : 0.2) :
+                                        modelData === "tirePressure" ? (signsRight.tirePressureOn ? 1 : 0.2) :
+                                        modelData === "autopilot_1" ? (signsRight.autoPilot ? 1: 0.2) : 0.2)
             }
         }
     }
@@ -62,17 +64,17 @@ Column {
     }
 
 
-    onToggleLight: function(lightName, state) {
-        if (lightName === "hold") {
-            headLightsOn = state;
-        } else if (lightName === "brake") {
-            minLightOn = state;
-        } else if (lightName === "tractionControl") {
-            maxLightOn = state;
-        } else if (lightName === "tirePressure") {
-            lightAutoOn = state;
-        }
-    }
+    // onToggleLight: function(lightName, state) {
+    //     if (lightName === "hold") {
+    //         headLightsOn = state;
+    //     } else if (lightName === "brake") {
+    //         minLightOn = state;
+    //     } else if (lightName === "tractionControl") {
+    //         maxLightOn = state;
+    //     } else if (lightName === "tirePressure") {
+    //         lightAutoOn = state;
+    //     }
+    // }
 
 }
 

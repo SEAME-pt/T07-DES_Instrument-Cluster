@@ -36,6 +36,10 @@ void ZMQReader::run()
             {"lightsleft", [this](QString v) { emit turnLightLeftReceived(v); }},
             {"lightsright", [this](QString v) { emit turnLightRightReceived(v); }},
             {"totaldistance", [this](QString v) { emit totalDistanceReceived(v); }},
+            {"lka", [this](QString v) { emit lkasReceived(v); }},
+            {"autopilot", [this](QString v) { emit autoPilotReceived(v); }},
+            {"lineleft", [this](QString v) { emit lineLeftReceived(v); }},
+            {"lineright", [this](QString v) { emit lineRightReceived(v); }},
         };
 
         m_running = true;

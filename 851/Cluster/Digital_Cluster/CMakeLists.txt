@@ -39,6 +39,14 @@ qt_add_qml_module(appDigital_Cluster
         ui/CenterPanel/LeftColumnCenterPanel.qml
         ui/CenterPanel/SignsLeftCenterPanel.qml
         ui/CenterPanel/Directions.qml
+        ui/LeftPanel/Rightcolumn/Navigation_menu.qml
+        ui/LeftPanel/Rightcolumn/Modes.qml
+        ui/LeftPanel/Rightcolumn/Settings.qml
+        ui/Main/Root.qml
+        ui/Play/Gamepad.qml
+        ui/Play/DPad.qml
+        ui/Play/Buttons.qml
+        ui/Play/TopButtons.qml
     RESOURCES
         ui/assets/modes.svg
         ui/assets/navigation.svg
@@ -59,6 +67,25 @@ qt_add_qml_module(appDigital_Cluster
         ui/assets/tractionControl.png
         ui/assets/turn_light_01.png
         ui/assets/turn_light_02.png
+        ui/assets/media_r.svg
+        ui/assets/modes_r.svg
+        ui/assets/navigation_r.svg
+        ui/assets/settings_r.svg
+        ui/assets/race_flag.svg
+        ui/assets/search.svg
+        ui/assets/arrow_back.svg
+        ui/assets/search_black.svg
+        ui/assets/autopilot_1.png
+        ui/assets/autopilot_2.png
+        ui/assets/home.svg
+        ui/assets/stop.svg
+        ui/assets/work.svg
+        ui/assets/ecoMode.svg
+        ui/assets/normalMode.svg
+        ui/assets/sportMode.svg
+        ui/assets/playMode.svg
+        ui/assets/lkas.svg
+        ui/assets/autoSteer.svg
     SOURCES
         System.h
         System.cpp

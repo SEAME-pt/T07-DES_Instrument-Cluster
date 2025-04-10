@@ -8,11 +8,38 @@ Rectangle {
     color: "#2F2F2F"
     radius: 8
 
+    signal stopNav(bool stop)
     // signal gearSelected(string gear)
+
+    property bool isCenterPanel: true // Identificador único
+
+    property string gearCenterPanel: "P"
+
+
+    Timer {
+            id: iconTimer1
+            interval: 2000 // Tempo em milissegundos (2 segundos "ligados")
+            repeat: false // Executa apenas uma vez
+            onTriggered: bottomBar.showIcons = false // Desliga os ícones
+        }
+
+
+    function updateGear(gear) {
+        console.log("gear recebida no CenterPanel:", gear);
+        if (gear === "D" && gearCenterPanel === "P") {
+            gearCenterPanel = gear
+            bottomBar.showIcons = true // Liga os ícones
+            iconTimer1.restart() // Reinicia o timer para desligar
+        } else {
+            gearCenterPanel = gear;
+        }
+    }
 
     property bool turnLightLeftCenterPanelOn: systemHandler.turnLightLeft === "true" ? true : false
     property bool turnLightRightCenterPanelOn: systemHandler.turnLightRight === "true" ? true : false
-    property bool emergencyCenterPanel: systemHandler.emergencyLights === "true" ? true : true
+    property bool emergencyCenterPanel: systemHandler.emergencyLights === "true" ? true : false // para teste colocar aqui true
+
+
 
     width: parent ? parent.width : 0
     height: parent ? parent.height : 0
@@ -169,6 +196,12 @@ Rectangle {
     Directions {
         id: indications
     }
+
+    onStopNav: function(stop) {
+        console.log("stop no center panel: ", stop);
+        root.stopNav(stop);
+    }
+
 
 }
 

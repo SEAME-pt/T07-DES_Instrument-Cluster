@@ -21,7 +21,15 @@ Rectangle {
     }
 
     signal gearSelected(string gear)
+    signal startNavigation(bool start)
 
+    property ListModel settingsModel
+    property ListModel modesModel
+    property string leftPanelSelectedMode
+
+    // Component.onCompleted: {
+    //     console.log("Modo na leftPanel: ", leftPanelSelectedMode);
+    // }
 
     Row {
         id: rowLayout
@@ -38,6 +46,7 @@ Rectangle {
         CenterColumn {
             id: centerColumn
             // visible: true
+            centerColumnSelectedMode: leftPanel.leftPanelSelectedMode
             visible: isCenterPanelOn ? false : true
         }
 
@@ -45,11 +54,18 @@ Rectangle {
         RightColumn {
             id: rightColumn
             // visible: true
+            settingsModel: leftPanel.settingsModel
+            modesModel: leftPanel.modesModel
             visible: isCenterPanelOn ? false : true
         }
     }
 
     onGearSelected: function(gear) {
         root.gearSelected(gear);
+    }
+
+    onStartNavigation: function(start) {
+        // console.log("start no left panel", start);
+        root.startNavigation(start);
     }
 }

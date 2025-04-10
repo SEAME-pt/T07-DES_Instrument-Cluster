@@ -1,61 +1,83 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Rectangle {
-    id: menuList
+    id: menuRight
+    // anchors.fill: parent
+    // clip: true
+    color: "#3A3A3A"
+    radius: 10
 
-    anchors.fill: parent
-    color: "transparent"
+    Column {
+        id: menuList
+        anchors.fill: parent
+        anchors.margins: 15
+        spacing: 8
 
-    ListView {
-    id: optionsList
+        Repeater {
+            model: [
+                { name: "Settings", icon: "../../assets/settings_r.svg", page: "Settings.qml" },
+                { name: "Modes", icon: "../../assets/modes_r.svg", page: "Modes.qml" },
+                { name: "Navigation", icon: "../../assets/navigation_r.svg", page: "Navigation_menu.qml" },
+                { name: "Media", icon: "../../assets/media_r.svg", page: "Media.qml" }
+            ]
 
-    anchors.centerIn: parent
-    width: parent.width
-    height: 50 // Ajuste de altura para caber os itens
+            delegate: Rectangle {
+                id: menuItem
+                // width: rightColumn.width
+                width: parent.width
+                height: 60
+                color: "transparent"
+                radius: 8
+                property bool hovered: false
 
+                Row {
+                    anchors.fill: parent
+                    anchors.leftMargin: 15
+                    anchors.rightMargin: 15
+                    spacing: 20
 
-    snapMode: ListView.SnapOneItem
-    orientation: ListView.Vertical
+                    Image {
+                        source: modelData.icon
+                        width: 18
+                        height: 18
+                        anchors.verticalCenter: parent.verticalCenter
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        mipmap: true
+                    }
 
-        model: ListModel {
-            ListElement { name: "navigation" ; page: "Navigation_right_Mapview.qml" }
-            ListElement { name: "modes" ; page: "modes.qml" }
-            ListElement { name: "media" ; page: "Media.qml"}
-            ListElement { name: "settings" ; page: "settings.qml"}
-        }
+                    Text {
+                        text: modelData.name
+                        color: "#4A90E2"
+                        font.pixelSize: 18
+                        // font.family: "Arial"
+                        font.weight: Font.Medium
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
 
-        delegate: Item {
-            width: parent.width
-            height: 50
-            // height: Math.abs(optionsList.view.currentIndex - index) === 0 ? 80 : 50 // Aumenta o item no centro
-            // opacity: Math.abs(optionsList.currentIndex - index) === 0 ? 1 : 0.5 // Ajusta a opacidade do item
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
 
-            Text {
-                anchors.centerIn: parent
-                text: model.name
-                // color: "white"
-                color: index === optionsList.currentIndex ? "#4A90E2" : "white"
-                opacity: index === optionsList.currentIndex ? 1 : 0.2
-                font.pixelSize: index === optionsList.currentIndex ? 18 : 10
-                // font.pixelSize: 18
-            }
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                onClicked: {
-                    optionsList.currentIndex = index; // Atualiza o índice do item selecionado
-                    rightLoader.source = model.page;
+                    onEntered: menuItem.hovered = true
+                    onExited: menuItem.hovered = false
+                    onClicked: {
+                        console.log("Clic:", modelData.name)
+                        if (modelData.name === "Settings") {
+                            // Acessa a função showSettings no RightColumn
+                            rightColumn1.showSettings();
+                        } else if (modelData.name === "Modes") {
+                            rightColumn1.showModes();
+                        } else {
+                            stackviewRightColumn.push(modelData.page)
+                        }
+                    }
                 }
             }
         }
-
-        onContentYChanged: {
-            let centerIndex = Math.round(contentY / 50); // Calcula o índice central baseado na altura de cada item
-            if (centerIndex !== currentIndex) {
-                currentIndex = centerIndex;
-            }
-            // console.log("Center index: ", centerIndex, model.get(centerIndex).name)
-        }
     }
 }
+

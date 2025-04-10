@@ -8,16 +8,16 @@ Column {
     signal gearSelected(string gearSelected)
 
     // Sinal para receber as luzes
-    signal toggleLight(string lightName, bool state)
+    // signal toggleLight(string lightName, bool state)
 
     property string gear: "P"
     property bool showIcons: false // Indica se os ícones devem estar "ligados" inicialmente -teste de luzes
 
     // Propriedades para controlar os estados individuais das luzes
-    property bool minlightOn: false
-    property bool headLightsOn: false
-    property bool maxLightOn: false
-    property bool lightAutoOn: false
+    property bool minlightOn: systemHandler.minLights === "true"
+    property bool headLightsOn: systemHandler.headlights === "true"
+    property bool maxLightOn: systemHandler.maxLights === "true"
+    property bool lightAutoOn: systemHandler.autoLight === "true"
 
 
     Repeater {
@@ -35,10 +35,10 @@ Column {
                 fillMode: Image.PreserveAspectFit
                 smooth: true // Para renderização de alta qualidade
                // opacity: showIcons ? 1 : 0.3
-                opacity: showIcons ? 1 : (modelData === "minLight" ? (minlightOn ? 1 : 0.2) :
-                                          modelData === "headLights" ? (headLightsOn ? 1 : 0.2) :
-                                          modelData === "maxLight" ? (maxLightOn ? 1 : 0.2) :
-                                          modelData === "lightAuto" ? (lightAutoOn ? 1 : 0.2) : 0.2)
+                opacity: showIcons ? 1 : (modelData === "minLight" ? (signs.minlightOn ? 1 : 0.2) :
+                                          modelData === "headLights" ? (signs.headLightsOn ? 1 : 0.2) :
+                                          modelData === "maxLight" ? (signs.maxLightOn ? 1 : 0.2) :
+                                          modelData === "lightAuto" ? (signs.lightAutoOn ? 1 : 0.2) : 0.2)
             }
         }
     }
@@ -70,17 +70,17 @@ Column {
     }
 
 
-    onToggleLight: function(lightName, state) {
-        if (lightName === "headLights") {
-            headLightsOn = state;
-        } else if (lightName === "minLight") {
-            minLightOn = state;
-        } else if (lightName === "maxLight") {
-            maxLightOn = state;
-        } else if (lightName === "lightAuto") {
-            lightAutoOn = state;
-        }
-    }
+    // onToggleLight: function(lightName, state) {
+    //     if (lightName === "headLights") {
+    //         headLightsOn = state;
+    //     } else if (lightName === "minLight") {
+    //         minLightOn = state;
+    //     } else if (lightName === "maxLight") {
+    //         maxLightOn = state;
+    //     } else if (lightName === "lightAuto") {
+    //         lightAutoOn = state;
+    //     }
+    // }
 
 }
 

@@ -31,7 +31,7 @@ Row {
                 onClicked: {
                     rowGears.gearSelected(modelData)
                     rowGears.selectedGear = modelData
-                    console.log(modelData)
+                    console.log("gear on gear.qml: ", modelData)
 
                 }
             }
