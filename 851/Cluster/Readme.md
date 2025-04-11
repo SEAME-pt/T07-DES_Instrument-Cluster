@@ -205,3 +205,5 @@ This will generate refman.pdf, a comprehensive reference manual for the project.
 
 Developed by: Team07 - SEA:ME Portugal  
 
+[![Team07](https://img.shields.io/badge/SEAME-Team07-blue?style=plastic)](https://github.com/orgs/SEAME-pt/teams/team07)
+
